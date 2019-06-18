@@ -1,0 +1,446 @@
+    //  *** Fonts ***
+    // font-family: 'Grupo',
+    // cursive;
+    // font-family: 'Tangerine',
+    // cursive;
+    // font-family: 'Josefin Slab', 
+    // serif;
+    ////***
+    // *** -----------------------
+    $bg-color:rgba(23, 163, 184, 0.1);
+    $color-info:#17a2b8;
+    // **** Style ****
+    .none {
+        display: none;
+    }
+    
+    .top-caroussel {
+        height: 300px;
+    }
+    /**  Animation flugzeug
+    **  Flugzeug bewegt sich von "right-bottom" zu "left-top",  
+    *    opacity wechselt sich von "0" zu "1" 
+    **/
+    
+    @keyframes flugzeug {
+        0% {
+            transform: translate(100%, 100%);
+            opacity: 0;
+        }
+        50% {
+            transform: translate(25%, 30%);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(0%, 0%);
+            opacity: 0;
+        }
+    }
+    
+    .flugzeug {
+        height: 300px;
+        position: relative;
+        animation: flugzeug 7s forwards;
+    }
+    /**
+    * eine mixin 'Animation' für die Animierung des 'Welcome'-Überschriften und Bild-'Welcome'
+    */
+    
+    @mixin animation($delay, $duration, $animation-name, $direction, $fillmode, $timing-function) {
+        animation-delay: $delay;
+        animation-duration: $duration;
+        animation-name: $animation-name;
+        animation-direction: $direction;
+        animation-fill-mode: $fillmode;
+        animation-timing-function: $timing-function;
+        @keyframes welcome {
+            0% {
+                margin: 0;
+                position: absolute;
+                top: 0%;
+                transform: translate(-50%, -50%);
+                transform: scale(0.001, 0.001);
+                opacity: 0;
+            }
+            100% {
+                margin: 0;
+                position: absolute;
+                top: 0%;
+                left: 0%;
+                transform: translate(-50%, -50%);
+                transform: scale(1, 1);
+                opacity: 1;
+            }
+        }
+    }
+    /**
+    * eine Welcome - Positionierung und animation
+    */
+    
+    .welcome {
+        display: flex;
+        margin: 0;
+        position: absolute;
+        @include animation(0.5s, 6s, welcome, alternate, forward, ease-in-out);
+        z-index: 5;
+        top: 0%;
+        left: 0%;
+        justify-content: center;
+        align-content: center;
+        transition: all 7s ease-in-out;
+        transition: opacity scale 0.05s;
+    }
+    
+    //
+    /**
+    * CSS für den Überschriften-Header
+    * haben alle ein font-Family und verschiedene Größen
+    */
+    
+    h1 {
+        font-size: 60px;
+        font-weight: 600;
+    }
+    
+    h2 {
+        font-size: 50px;
+        font-weight: bold;
+    }
+    
+    h3 {
+        font-size: 40px;
+        font-weight: bold;
+    }
+    
+    h4 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .h1-text,
+    .h2-text,
+    .h3-text,
+    .h4-text {
+        font-family: 'Tangerine', cursive;
+    }
+    /* Ende Header
+    */
+    
+    a.f {
+        font-family: 'Gruppo', cursive;
+    }
+    
+    .karte {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    figure>img {
+        max-width: 50%;
+    }
+    
+    figure>img:hover {
+        max-width: 100%;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    /**
+    * Font für den Texten
+    */
+    
+    .article-text {
+        font-family: 'Josefin Slab', serif;
+        font-size: 1.18em;
+    }
+    /**
+    * Erste Buchstabe beim Absatz hat andere Größe 
+    * und andere Schrift
+    */
+    
+    .span::first-letter {
+        font-size: 2.5em;
+        font-family: 'Tangerine', cursive;
+        line-height: 35px;
+        initial-letter: 4;
+    }
+    /**
+    * Zwei Icons beim Rezept
+    * \1F374 -> Gabel und Messer
+    * \1F35A -> Schussel mit dem Reis
+    */
+    
+    .span-rezept::after {
+        position: absolute;
+        top: 12px;
+        content: '''\1F374 \1F35A';
+        padding-left: 0px;
+        padding-right: 5px;
+        color: $color-info;
+    }
+    /**
+    * Erste Buchstabe bei der Rezept-Beschriftung hat andere Größe 
+    * und andere Schrift
+    */
+    
+    .span-rezept::first-letter {
+        font-size: 2.5em;
+        font-family: 'Tangerine', cursive;
+        line-height: 35px;
+        initial-letter: 4 5;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    /**
+    * Icon gradued bei den Bildungslisten 
+    */
+    
+    li.gradued:before {
+        content: '\1F393';
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+    /**
+    * Icon Gebäude mit dem Stern bei Sehenswürdigkeiten 
+    */
+    
+    li.building:before {
+        content: '\1f3db \02735';
+        color: $color-info;
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+    /**
+    * Cursor Pointer anzeigen,
+    * bei Modal-Fenstern
+    */
+    
+    li.building,
+    .cursor-img {
+        cursor: pointer;
+    }
+    /**
+    * Positionierung den Buttons beim Tier-Kaussell
+    */
+    
+    .h-bt {
+        height: 140px;
+        padding-top: 70px;
+    }
+    /**
+    * Positionierung der Beschriftung beim Tier-Karussell
+    */
+    
+    .fcapt-pos {
+        padding-top: 30px;
+        text-align: center;
+    }
+    /** 
+    * Eine Scene-Positioniierung beim Tier-Karussell Positionierung 
+    * wo die Bilder angezeigt werden.
+    */
+    
+    .scene-tiere {
+        border: 1px solid #CCC;
+        margin: 40px 0;
+        position: relative;
+        width: 300px;
+        height: 282px;
+        margin: 30px auto;
+        perspective: 400px;
+        box-shadow: 0px 1px 15px -2px #9b9b9b;
+    }
+    /**
+    * verschiebt ein Element entlang der Z-Achse
+    */
+    
+    .carousel-tiere {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform: translateZ(-1411px);
+        transform-style: preserve-3d;
+        transition: transform 1s;
+    }
+    /**
+    * Eine Positionierung und Größe des Tier-Bild
+    */
+    
+    .carousel-cell-tiere {
+        position: absolute;
+        width: 280px;
+        height: 262px;
+        left: 10px;
+        top: 10px;
+        border: 1px solid black;
+        line-height: 116px;
+        font-size: 80px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        transition: transform 1s, opacity 1s;
+    }
+    /**
+    * Rotation von Tier-Bilder für 3D-Darstellung 
+    * Die Funktion transform: translateZ (Längeeongabe )verschiebt ein Element entlang der Z-Achse
+    * eine Längenangabe für die Verschiebung, Beachten Sie: Für die Längenangaben sind sowohl negative als auch positive Werte erlaubt.
+    * Mit  der Funktion transform: rotateY( Winkelgrad ) kann man ein Element um die Y-Achse drehen. 
+    */
+    
+    .carousel-cell-tiere:nth-child(1) {
+        transform: rotateY(0deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(2) {
+        transform: rotateY(24deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(3) {
+        transform: rotateY(48deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(4) {
+        transform: rotateY(72deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(5) {
+        transform: rotateY(96deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(6) {
+        transform: rotateY(120deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(7) {
+        transform: rotateY(144deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(8) {
+        transform: rotateY(168deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(9) {
+        transform: rotateY(192deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(10) {
+        transform: rotateY(216deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(11) {
+        transform: rotateY(240deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(12) {
+        transform: rotateY(264deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(13) {
+        transform: rotateY(288deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(14) {
+        transform: rotateY(312deg) translateZ(1411px);
+    }
+    
+    .carousel-cell-tiere:nth-child(15) {
+        transform: rotateY(336deg) translateZ(1411px);
+    }
+    
+    .carousel-bg {
+        background: $bg-color;
+    }
+    /**
+    * CSS Tier-Karussell-Ende
+    */
+    
+    //
+    /**
+    * CSS -für Kontakt-form
+    */
+    
+    .form-container {
+        padding: 30px;
+        border-radius: 25px;
+        box-shadow: 0px 0px 24px 0px #fcfcfc;
+        background-color: rgba(236, 231, 231, 0.697);
+        border: 1px solid #eee;
+    }
+    
+    .bg-info-kontakt {
+        text-shadow: 0px 0px 25px 5px $color-info;
+        background-color: $color-info;
+        opacity: 0.9;
+    }
+    
+    .bg-kontakt {
+        background-image: url("../img/suvenir.jpg");
+        opacity: 0.8;
+        margin: 0 auto;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    
+    //div ist leer für die Abstand zwischen Formular und Footer
+    .leer {
+        height: 80px;
+    }
+    
+    .kontakt-form {
+        font-size: 1.15em;
+    }
+    /**
+    * CSS-Kontakt-Form-ende
+    **/
+    
+    //
+    /**
+    * Änderung der Perspektive beim Tier-Karussell 
+    * responsive Karussell
+    */
+    
+    @media screen and (max-width:440px) and (max-height:846px) and (orientation:portrait) {
+        .scene-tiere {
+            perspective: 50px;
+        }
+    }
+    
+    @media screen and (max-width:846px) and (max-height:414px) and (orientation:landscape) {
+        .scene-tiere {
+            perspective: 120px;
+        }
+    }
+    
+    @media screen and (max-width:720px) and (height:1280px) and (orientation:portrait) {
+        .scene-tiere {
+            perspective: 180px;
+        }
+    }
+    
+    @media screen and (max-width:1280px) and (height:720px) and (orientation:landscape) {
+        .scene-tiere {
+            perspective: 300px;
+        }
+    }
+    
+    @media screen and (max-width:768px) and (height:1024px) and (orientation:portrait) {
+        .scene-tiere {
+            perspective: 120px;
+        }
+    }
+    
+    @media screen and (max-width:1024px) and (height:768px) and (orientation:landscape) {
+        .scene-tiere {
+            perspective: 260px;
+        }
+    }
+    
+    @media screen and (max-width:1080x) and (height:1920px) and (orientation:portrait) {
+        .scene-tiere {
+            perspective: 500px;
+        }
+    }
