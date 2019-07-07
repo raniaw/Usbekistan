@@ -209,6 +209,7 @@
     
     li.building:before {
         content: '\1f3db \02735';
+        //content: '' '\f678 \02735';
         color: $color-info;
         margin-left: 20px;
         margin-right: 10px;
